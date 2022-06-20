@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "549699506427",
+    "project_id": "kutravel-8a8e1",
+    "storage_bucket": "kutravel-8a8e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549699506427:android:4c5acb84c5e243700d205e",
+        "android_client_info": {
+          "package_name": "com.chachaup.kutravel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "549699506427-e2dj4689pn3ivr8rcbal63cho0h4lvnf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chachaup.kutravel",
+            "certificate_hash": "6fcb0839ea7393cc23c7536600ec147d41459baf"
+          }
+        },
+        {
+          "client_id": "549699506427-ut88c1gr1q9aerahbjs9cb0r49cgpc4d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEQJJTCwJVb9hdVuz0MVXJE-qGWj8bm_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "549699506427-ut88c1gr1q9aerahbjs9cb0r49cgpc4d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
