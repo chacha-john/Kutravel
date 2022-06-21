@@ -3,6 +3,9 @@ plugins {
 }
 
 android {
+    buildTypes.each{
+        it.buildConfigField 'String', 'TICKETMASTER_API_KEY', TicketMasterApiKey
+    }
     compileSdk 32
 
     defaultConfig {
