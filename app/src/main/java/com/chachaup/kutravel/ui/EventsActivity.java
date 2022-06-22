@@ -14,11 +14,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.chachaup.kutravel.Constants;
 import com.chachaup.kutravel.R;
 import com.chachaup.kutravel.adapters.EventListAdapter;
-import com.chachaup.kutravel.model.Event;
+import com.chachaup.kutravel.model.events.Event;
+import com.chachaup.kutravel.model.events.EventSearchResponse;
 import com.chachaup.kutravel.network.API;
 import com.chachaup.kutravel.network.Client;
 
@@ -46,8 +48,6 @@ public class EventsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
 
-        API client = Client.getClient();
-        Call<Event> call = client.getEvents(keyword,"US",API_KEY);
     }
 
     @Override
@@ -67,23 +67,27 @@ public class EventsActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String keyword) {
                 addToSharedPreferences(keyword);
                 API client = Client.getClient();
-                Call<Event> call = client.getEvents(keyword,"US", API_KEY);
-                call.enqueue(new Callback<Event>() {
+                Call<EventSearchResponse> call = client.getEvents(keyword,"US", API_KEY);
+                call.enqueue(new Callback<EventSearchResponse>() {
                     @Override
-                    public void onResponse(Call<Event> call, Response<Event> response) {
+                    public void onResponse(Call<EventSearchResponse> call, Response<EventSearchResponse> response) {
                         if (response.isSuccessful()){
-//                            mEvents = response.body().getName();
-                            mAdapter = new EventListAdapter(EventsActivity.this, mEvents);
-                            mRecyclerView.setAdapter(mAdapter);
-                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(EventsActivity.this);
-                            mRecyclerView.setLayoutManager(layoutManager);
-                            mRecyclerView.setHasFixedSize(true);
+                            if (response.body().getEmbedded() != null){
+                                mEvents = response.body().getEmbedded().getEvents();
+                                mAdapter = new EventListAdapter(EventsActivity.this, mEvents);
+                                mRecyclerView.setAdapter(mAdapter);
+                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(EventsActivity.this);
+                                mRecyclerView.setLayoutManager(layoutManager);
+                                mRecyclerView.setHasFixedSize(true);
+                            }else{
+                                Toast.makeText(EventsActivity.this,"The event you searched does not exist",Toast.LENGTH_SHORT).show();
+                            }
 
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<Event> call, Throwable t) {
+                    public void onFailure(Call<EventSearchResponse> call, Throwable t) {
 
                     }
                 });
