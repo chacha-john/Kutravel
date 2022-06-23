@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.EventDetailFragment">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="@color/pine_tree"
+       android:orientation="vertical">
+
+       <ImageView
+           android:layout_width="match_parent"
+           android:layout_height="180dp"
+           android:id="@+id/ImageViewEventDetail"
+           android:src="@drawable/image"
+           android:scaleType="centerCrop"/>
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:padding="20dp">
+
+           <TextView
+               android:id="@+id/TextViewEventNameEventDetail"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:text="Event Name"
+               android:textColor="@color/pine_tree"
+               android:textStyle="bold" />
+
+           <TextView
+               android:id="@+id/textViewEventDescriptionEventDetail"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_alignParentEnd="true"
+               android:layout_marginTop="53dp"
+               android:layout_marginEnd="264dp"
+               android:text="Event description"
+               android:textStyle="italic" />
+
+           <TextView
+               android:id="@+id/textViewStartDateEventDetail"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_alignParentEnd="true"
+               android:layout_marginTop="16dp"
+               android:layout_marginEnd="123dp"
+               android:text="Starts On:" />
+
+           <TextView
+               android:id="@+id/textViewEndDateEventDetail"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_alignParentEnd="true"
+               android:layout_marginTop="16dp"
+               android:layout_marginEnd="19dp"
+               android:text="Ends On:" />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:padding="20dp"
+               android:layout_alignParentLeft="true"
+               android:layout_alignParentStart="true"
+               android:layout_below="@+id/textViewEventDescriptionEventDetail">
+
+               <TextView
+                   android:id="@+id/textViewEventTicketEventDetail"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="141dp"
+                   android:layout_marginBottom="12dp"
+                   android:drawableLeft="@drawable/exit_to_app"
+                   android:gravity="center"
+                   android:text="Event ticket" />
+
+               <TextView
+                   android:id="@+id/textViewEventAddressEventDetail"
+                   android:drawableLeft="@drawable/map"
+                   android:gravity="center"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="141dp"
+                   android:layout_marginBottom="12dp"
+                   android:text="Event Address" />
+
+
+           </LinearLayout>
+
+       </RelativeLayout>
+
+       <Button
+           android:id="@+id/buttonBookmarkEventDetail"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:drawableLeft="@drawable/bookmark"
+           android:gravity="center"
+           android:text="Bookmark"
+           android:textSize="15dp" />
+
+       <Button
+           android:id="@+id/buttonExitEventDetail"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Exit"
+           android:layout_alignParentRight="true"
+           android:textSize="15dp" />
+
+   </LinearLayout>
+
+</FrameLayout>
