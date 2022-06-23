@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/tab2"
+    android:id="@+id/venues"
     tools:context=".ui.VenueActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -16,5 +18,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.009" />
+
+    <ProgressBar
+        android:id="@+id/progressBarSearchVenue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.584" />
+
+    <TextView
+        android:id="@+id/textViewLandVenue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your searched venues will appear here when you search!"
+        android:textColor="@color/ghost_white"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewVenue"
+        app:layout_constraintVertical_bias="0.226" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
