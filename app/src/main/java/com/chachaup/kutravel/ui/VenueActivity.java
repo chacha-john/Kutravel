@@ -13,6 +13,8 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -42,11 +44,14 @@ public class VenueActivity extends AppCompatActivity {
     private VenueListAdapter mAdapter;
     @BindView(R.id.recyclerViewVenue)
     RecyclerView mRecyclerView;
+    @BindView(R.id.progressBarSearchVenue)
+    ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_venue);
+        ButterKnife.bind(this);
 
     }
 
@@ -71,8 +76,10 @@ public class VenueActivity extends AppCompatActivity {
                 call.enqueue(new Callback<VenueSearchResponse>() {
                     @Override
                     public void onResponse(Call<VenueSearchResponse> call, Response<VenueSearchResponse> response) {
+                        showProgressBar();
                         if (response.isSuccessful()){
                             if (response.body().getEmbedded() != null){
+                                hideProgressBar();
                                 mVenues = response.body().getEmbedded().getVenues();
                                 mAdapter = new VenueListAdapter(VenueActivity.this, mVenues);
                                 mRecyclerView.setAdapter(mAdapter);
@@ -111,5 +118,15 @@ public class VenueActivity extends AppCompatActivity {
 
     private void addToSharedPreferences(String keyword){
         mEditor.putString(Constants.PREFERENCES_KEYWORD, keyword).apply();
+    }
+
+    private void showProgressBar(){
+        mProgressBar.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
+    }
+
+    private void hideProgressBar(){
+        mProgressBar.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
 }

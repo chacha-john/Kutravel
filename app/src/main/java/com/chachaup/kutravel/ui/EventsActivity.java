@@ -13,6 +13,8 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -36,17 +38,20 @@ public class EventsActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String keyword;
-
     private List<Event> mEvents;
-
     private EventListAdapter mAdapter;
+
     @BindView(R.id.recyclerViewEvents)
     RecyclerView mRecyclerView;
+    @BindView(R.id.progressBarSearchEvents)
+    ProgressBar mProgressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
+        ButterKnife.bind(this);
 
     }
 
@@ -71,8 +76,10 @@ public class EventsActivity extends AppCompatActivity {
                 call.enqueue(new Callback<EventSearchResponse>() {
                     @Override
                     public void onResponse(Call<EventSearchResponse> call, Response<EventSearchResponse> response) {
+                        showProgressBar();
                         if (response.isSuccessful()){
                             if (response.body().getEmbedded() != null){
+                                hideProgressBar();
                                 mEvents = response.body().getEmbedded().getEvents();
                                 mAdapter = new EventListAdapter(EventsActivity.this, mEvents);
                                 mRecyclerView.setAdapter(mAdapter);
@@ -111,4 +118,15 @@ public class EventsActivity extends AppCompatActivity {
     private void addToSharedPreferences(String keyword){
         mEditor.putString(Constants.PREFERENCES_KEYWORD, keyword).apply();
     }
+
+    private void showProgressBar(){
+        mProgressBar.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
+    }
+
+    private void hideProgressBar(){
+        mProgressBar.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+    }
+
 }
