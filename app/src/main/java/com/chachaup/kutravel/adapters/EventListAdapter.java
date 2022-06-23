@@ -52,7 +52,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
         return mEvents.size();
     }
 
-    public class EventViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
+    public class EventViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.imageViewEventItem) ImageView mEventImageView;
         @BindView(R.id.textViewEventNameItem)TextView mEventNameView;
         @BindView(R.id.textViewEventDescriptionItem) TextView mDescriptionTextView;
@@ -65,7 +65,6 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
             ButterKnife.bind(this,view);
             mContext = view.getContext();
 
-            view.setOnClickListener(this);
         }
 
         public void bindEvent(Event event){
@@ -75,12 +74,6 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
             Picasso.get().load(event.getImages().get(5).getUrl()).into(mEventImageView);
         }
 
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(mContext, EventDetailActivity.class);
-            intent.putExtra("events", Parcels.wrap(mEvents));
-            mContext.startActivity(intent);
-        }
     }
 
 }
