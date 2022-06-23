@@ -30,7 +30,7 @@ public class VenueListAdapter extends RecyclerView.Adapter<VenueListAdapter.Venu
     @NonNull
     @Override
     public VenueListAdapter.VenueViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_list_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.venue_list_item,parent,false);
         VenueViewHolder viewHolder = new VenueViewHolder(view);
         return viewHolder;
     }
